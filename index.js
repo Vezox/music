@@ -103,13 +103,13 @@ const app = {
 
         runTime.innerText = '00:00'
         totalTime.innerText = '00:00'
-        setTimeout(() => {
+        audio.onloadeddata = function() {
             let min = Math.floor(audio.duration / 60)
             min = min < 9 ? '0' + min : min
             let seconds = Math.floor(audio.duration % 60)
             seconds = seconds < 9 ? '0' + seconds : seconds
             totalTime.innerText = min + ':' + seconds
-        },2000);
+        }
     },
     events: function () {
         _this = this
