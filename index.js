@@ -109,7 +109,7 @@ const app = {
             let seconds = Math.floor(audio.duration % 60)
             seconds = seconds < 9 ? '0' + seconds : seconds
             totalTime.innerText = min + ':' + seconds
-        },500);
+        },1000);
     },
     events: function () {
         _this = this
