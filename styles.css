@@ -66,10 +66,11 @@
     font-size: 30px;
     cursor: pointer;
   }
+  
   .dark .list-heart {
     color: #d3d3d3;
   }
-  
+
   .list-heart.play-list-heart {
     color: #ec1f55;
   }
