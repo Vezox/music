@@ -158,14 +158,21 @@ const app = {
             if (_this.isPlaying) {
                 pause()
             } else {
-                if (!(_this.isPlayListHeart && listHeart.length == 0)) {
-                    if(_this.isPlayListHeart){
-                        _this.indexSong = listHeart[indexHeart]
-                    }
-                    _this.songNow()
-                    play()
+                if (audio.currentTime > 0) {
+                    audio.play()
+                    cdAnimated.play()
+                    _this.isPlaying = true
+                    playing.classList.add('playing')
                 } else {
-                    alert("Hiện không có bài hát nào trong danh sách yêu thích !!!")
+                    if (!(_this.isPlayListHeart && listHeart.length == 0)) {
+                        if (_this.isPlayListHeart) {
+                            _this.indexSong = listHeart[indexHeart]
+                        }
+                        _this.songNow()
+                        play()
+                    } else {
+                        alert("Hiện không có bài hát nào trong danh sách yêu thích !!!")
+                    }
                 }
             }
         }
