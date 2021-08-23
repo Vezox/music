@@ -103,7 +103,7 @@ const app = {
 
         runTime.innerText = '00:00'
         totalTime.innerText = '00:00'
-        audio.onloadeddata = function() {
+        audio.onloadeddata = function () {
             let min = Math.floor(audio.duration / 60)
             min = min < 9 ? '0' + min : min
             let seconds = Math.floor(audio.duration % 60)
@@ -158,7 +158,15 @@ const app = {
             if (_this.isPlaying) {
                 pause()
             } else {
-                play()
+                if (!(_this.isPlayListHeart && listHeart.length == 0)) {
+                    if(_this.isPlayListHeart){
+                        _this.indexSong = listHeart[indexHeart]
+                    }
+                    _this.songNow()
+                    play()
+                } else {
+                    alert("Hiện không có bài hát nào trong danh sách yêu thích !!!")
+                }
             }
         }
 
@@ -288,7 +296,7 @@ const app = {
         btnMode.onclick = function () {
             body.classList.toggle('dark')
             let textMode = document.querySelector('.dark .dark-mode p')
-            if(textMode) {
+            if (textMode) {
                 textMode.innerText = 'Light'
             } else {
                 textMode = document.querySelector('.dark-mode p')
@@ -324,9 +332,11 @@ const app = {
         btnHeart.onclick = function () {
             if (!_this.isPlayListHeart) {
                 _this.isPlayListHeart = true
-                _this.indexSong = listHeart[indexHeart]
-                _this.songNow()
-                play()
+                if (listHeart.length > 0) {
+                    _this.indexSong = listHeart[indexHeart]
+                    _this.songNow()
+                    play()
+                }
             } else {
                 _this.isPlayListHeart = false
             }
@@ -341,18 +351,24 @@ const app = {
             } else if (_this.isRepeat) {
                 play()
             } else if (_this.isPlayListHeart) {
-                indexHeart++
-                _this.indexSong = listHeart[indexHeart]
-                _this.songNow()
-                play()
+                if (listHeart.length > 0) {
+                    if (indexHeart == listHeart.length - 1) {
+                        indexHeart = 0
+                    } else {
+                        indexHeart++
+                    }
+                    _this.indexSong = listHeart[indexHeart]
+                    _this.songNow()
+                    play()
+                }
             } else {
                 nextSong()
             }
         }
     },
     start: function () {
-        this.render()
         this.renderTime()
+        this.render()
         this.events()
     }
 }
