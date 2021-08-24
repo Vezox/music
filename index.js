@@ -177,7 +177,7 @@ const app = {
             }
         }
 
-        // onchange
+        // onchange - update runTime
         let runTime = document.querySelector('.run-time')
         audio.ontimeupdate = function () {
             audio.duration ? progress.value = audio.currentTime / audio.duration * 1000 : 0
