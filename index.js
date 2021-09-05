@@ -321,13 +321,7 @@ const app = {
                 let id = heart.parentElement.getAttribute('id')
 
                 if (listHeart.includes(id)) {
-                    let arr = []
-                    for (let i = 0; i < listHeart.length; i++) {
-                        if (listHeart[i] != id) {
-                            arr.push(listHeart[i])
-                        }
-                    }
-                    listHeart = [...arr]
+                    listHeart.splice(id, 1)
                 } else {
                     listHeart.push(id)
                 }
