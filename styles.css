@@ -41,6 +41,7 @@
   .player.playing .icon-play {
     display: none;
   }
+  
   .btn:hover {
     cursor: pointer;
   }
